@@ -18,7 +18,7 @@ public class Maze {
 
     private void fillMaze(){
         for(int row = 0; row < mazeHeight; row++){
-            cells.add(new ArrayList<Cell>());
+            cells.add(new ArrayList<>());
             for(int col = 0; col < mazeWidth; col++){
                 cells.get(row).add(new Cell());
             }

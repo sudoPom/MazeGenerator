@@ -55,7 +55,7 @@ public class MazeSketcher extends Canvas{
     }
 
     public static void main(String[] args) {
-        Maze maze = new Maze(200,200);
-        MazeSketcher mazeSketcher = new MazeSketcher(maze);
+        Maze maze = new Maze(100,100);
+        new MazeSketcher(maze);
     }
 }
