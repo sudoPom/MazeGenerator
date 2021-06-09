@@ -2,6 +2,8 @@ public class Cell {
     private boolean north, east, south, west;
     private Cell northCell;
     private Cell eastCell;
+    private Cell westCell;
+    private Cell southCell;
 
     public Cell(){
         north = true;
@@ -24,22 +26,30 @@ public class Cell {
 
     public void destroyNorthWall(){
         this.north = false;
-        if(this.northCell != null){
+        if(this.northCell != null && this.northCell.isSouth()){
             this.northCell.destroySouthWall();
         }
     }
 
     public void destroyEastWall(){
         this.east = false;
-        if(this.eastCell != null){
+        if(this.eastCell != null && this.eastCell.isWest()){
             this.eastCell.destroyWestWall();
         }
     }
+
     public void destroyWestWall(){
         this.west = false;
+        if(this.westCell != null && this.westCell.isEast()){
+            this.northCell.destroyEastWall();
+        }
     }
+
     public void destroySouthWall(){
         this.south = false;
+        if(this.southCell != null && this.southCell.isNorth()){
+            this.southCell.destroyNorthWall();
+        }
     }
 
     public boolean isEast() {
