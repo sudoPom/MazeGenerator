@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Maze {
+public class BinaryTreeMaze {
     private final int mazeWidth;
     private final int mazeHeight;
 
     private final ArrayList<ArrayList<Cell>> cells;
 
-    public Maze(int width, int height){
+    public BinaryTreeMaze(int width, int height){
         cells = new ArrayList<>();
         mazeWidth = width;
         mazeHeight = height;

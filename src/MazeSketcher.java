@@ -7,19 +7,23 @@ import java.util.ArrayList;
 public class MazeSketcher extends Canvas{
 
     public static final int BORDER = 10;
-    public static final int WIDTH = 1000;
+    public static final int WIDTH = 1920;
     public static final int HEIGHT = 1000;
     private final int cellHeight;
     private final int cellWidth;
     JFrame frame;
     ArrayList<ArrayList<Cell>> cells;
 
-    public MazeSketcher(Maze maze){
+    public MazeSketcher(BinaryTreeMaze maze){
         cells = maze.getCells();
+        int mazeHeight = cells.size();
+        int mazeWidth = cells.get(0).size();
         frame = new JFrame("Maze");
         setSize(WIDTH, HEIGHT);
-        cellHeight = (HEIGHT - 2* BORDER)/cells.size();
-        cellWidth = (WIDTH - 2* BORDER)/cells.get(0).size();
+        int cellSize = Math.min((WIDTH-(2*BORDER))/mazeWidth, (HEIGHT-(2*BORDER))/ mazeHeight);
+        cellHeight = cellSize;
+        cellWidth = cellSize;
+        System.out.println(cellSize);
         frame.add(this);
         frame.pack();
         frame.setVisible(true);
@@ -55,7 +59,8 @@ public class MazeSketcher extends Canvas{
     }
 
     public static void main(String[] args) {
-        Maze maze = new Maze(100,100);
-        new MazeSketcher(maze);
+        BinaryTreeMaze maze = new BinaryTreeMaze(100,50);
+//        new MazeSketcher(maze);
+        MazeSketcher x = new MazeSketcher(maze);
     }
 }
