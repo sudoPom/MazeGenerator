@@ -1,3 +1,5 @@
+package mazegenapp.datastructures;
+
 public class Cell {
     private boolean north, east, south, west;
     private Cell northCell;
