@@ -5,27 +5,24 @@ import mazegenapp.datastructures.Cell;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BinaryTreeMaze {
+public class BinaryTreeMaze extends GenericMaze{
     private final int mazeWidth;
     private final int mazeHeight;
 
     private final ArrayList<ArrayList<Cell>> cells;
 
     public BinaryTreeMaze(int width, int height){
+        super(width, height);
         cells = new ArrayList<>();
         mazeWidth = width;
         mazeHeight = height;
-        fillMaze();
+        BinaryTreeMaze.fillMaze(mazeWidth,mazeHeight, cells);
         setNeighbors();
         breakWalls();
     }
 
-    private void fillMaze(){
-        Maze.fillMaze();
-    }
-
     private void setNeighbors(){
-        Maze.setNeighnors(mazeHeight, mazeWidth, cells);
+        GenericMaze.setNeighbours(mazeHeight, mazeWidth, cells);
     }
 
     private void breakWalls(){

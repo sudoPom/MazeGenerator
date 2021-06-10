@@ -4,13 +4,24 @@ import mazegenapp.datastructures.Cell;
 
 import java.util.ArrayList;
 
-public interface Maze {
+public class GenericMaze {
 
-    ArrayList<ArrayList<Cell>> cells = null;
-    int mazeWidth = 0;
-    int mazeHeight = 0;
+    public GenericMaze(int width, int height) {
+        ArrayList<ArrayList<Cell>> cells = new ArrayList<>();
+        fillMaze(width, height, cells);
+    }
 
-    static void setNeighnors(int mazeHeight, int mazeWidth, ArrayList<ArrayList<Cell>> cells) {
+
+    public static void fillMaze(int mazeWidth, int mazeHeight, ArrayList<ArrayList<Cell>> cells){
+        for(int row = 0; row < mazeHeight; row++){
+            cells.add(new ArrayList<>());
+            for(int col = 0; col < mazeWidth; col++){
+                cells.get(row).add(new Cell());
+            }
+        }
+    }
+
+    static void setNeighbours(int mazeHeight, int mazeWidth, ArrayList<ArrayList<Cell>> cells) {
         Cell north, east;
         for(int row = 0; row < mazeHeight; row++){
             for(int col = 0; col < mazeWidth; col++){
@@ -30,14 +41,4 @@ public interface Maze {
             }
         }
     }
-
-    static void fillMaze(){
-        for(int row = 0; row < mazeHeight; row++){
-            cells.add(new ArrayList<>());
-            for(int col = 0; col < mazeWidth; col++){
-                cells.get(row).add(new Cell());
-            }
-        }
-    }
-
 }
