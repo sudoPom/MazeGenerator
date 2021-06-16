@@ -5,8 +5,7 @@ import mazegenapp.mazes.BinaryTreeMaze;
 import mazegenapp.mazes.GenericMaze;
 import mazegenapp.mazes.SideWinderMaze;
 
-import java.awt.Canvas;
-import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 
@@ -48,6 +47,11 @@ public class MazeSketcher extends Canvas{
     }
 
     private void drawCell(Cell cell, Graphics g, int x, int y){
+        if(cell.isPartOfPath()){
+            g.setColor(Color.GREEN);
+            g.fillRect(x,y-cellWidth,cellWidth,cellHeight);
+            g.setColor(Color.BLACK);
+        }
         if(cell.isWest()){
             g.drawLine(x,y,x,y-cellHeight);
         }
@@ -60,11 +64,10 @@ public class MazeSketcher extends Canvas{
         if(cell.isEast()){
             g.drawLine(x+cellWidth,y,x+cellWidth,y-cellHeight);
         }
-        g.drawString(String.valueOf(cell.getDistance()),x+cellWidth/2,y-cellHeight/2);
     }
 
     public static void main(String[] args) {
-        GenericMaze maze = new BinaryTreeMaze(100,50);
+        GenericMaze maze = new SideWinderMaze(100,100);
         new MazeSketcher(maze);
     }
 }

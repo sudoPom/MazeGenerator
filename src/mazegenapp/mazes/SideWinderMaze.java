@@ -1,6 +1,8 @@
 package mazegenapp.mazes;
 
 import java.util.ArrayList;
+
+import mazegenapp.algorithms.PathFinder;
 import mazegenapp.datastructures.Cell;
 import java.util.Random;
 
@@ -18,6 +20,7 @@ public class SideWinderMaze extends GenericMaze{
         SideWinderMaze.fillMaze(width,height,cells);
         setNeighbors();
         breakWalls();
+        new PathFinder(cells);
     }
 
     private void setNeighbors(){

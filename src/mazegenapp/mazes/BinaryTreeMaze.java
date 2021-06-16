@@ -1,5 +1,6 @@
 package mazegenapp.mazes;
 
+import mazegenapp.algorithms.PathFinder;
 import mazegenapp.datastructures.Cell;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class BinaryTreeMaze extends GenericMaze{
         BinaryTreeMaze.fillMaze(mazeWidth,mazeHeight, cells);
         setNeighbors();
         breakWalls();
+        new PathFinder(cells);
     }
 
     private void setNeighbors(){

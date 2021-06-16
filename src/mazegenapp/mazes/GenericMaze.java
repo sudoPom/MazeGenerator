@@ -24,7 +24,7 @@ public class GenericMaze {
     }
 
     static void setNeighbours(int mazeHeight, int mazeWidth, ArrayList<ArrayList<Cell>> cells) {
-        Cell north, east;
+        Cell north, east, south, west;
         for(int row = 0; row < mazeHeight; row++){
             for(int col = 0; col < mazeWidth; col++){
                 if(row == mazeHeight -1){
@@ -39,7 +39,19 @@ public class GenericMaze {
                 else{
                     east = cells.get(row).get(col+1);
                 }
-                cells.get(row).get(col).addNorthAndEastCells(north, east);
+                if(row == 0){
+                    south = null;
+                }
+                else{
+                    south = cells.get(row-1).get(col);
+                }
+                if(col == 0){
+                    west = null;
+                }
+                else{
+                    west = cells.get(row).get(col-1);
+                }
+                cells.get(row).get(col).addNeighbors(north, east, south, west);
             }
         }
     }

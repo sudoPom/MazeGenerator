@@ -6,18 +6,23 @@ public class Cell {
     private Cell eastCell;
     private Cell westCell;
     private Cell southCell;
-    private int distance = 0;
+    private double distance;
+    private boolean partOfPath;
 
     public Cell(){
         north = true;
         east = true;
         south = true;
         west = true;
+        distance = Double.POSITIVE_INFINITY;
+        partOfPath = false;
     }
 
-    public void addNorthAndEastCells(Cell northCell, Cell eastCell){
+    public void addNeighbors(Cell northCell, Cell eastCell, Cell southCell, Cell westCell){
         this.northCell = northCell;
         this.eastCell = eastCell;
+        this.southCell = southCell;
+        this.westCell = westCell;
     }
 
     public void destroyWall(int choice){
@@ -71,7 +76,35 @@ public class Cell {
         return west;
     }
 
-    public int getDistance() {
+    public double getDistance() {
         return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public Cell getNorthCell() {
+        return northCell;
+    }
+
+    public Cell getEastCell() {
+        return eastCell;
+    }
+
+    public Cell getSouthCell() {
+        return southCell;
+    }
+
+    public Cell getWestCell() {
+        return westCell;
+    }
+
+    public boolean isPartOfPath() {
+        return partOfPath;
+    }
+
+    public void addToPath(){
+        partOfPath = true;
     }
 }
