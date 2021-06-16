@@ -30,32 +30,41 @@ public class SideWinderMaze extends GenericMaze{
         for(int rows = 0; rows < mazeHeight; rows++){
             for(int cols = 0; cols < mazeWidth; cols++){
                 Cell currentCell = cells.get(rows).get(cols);
-                if(rows == mazeHeight - 1 && cols == mazeWidth - 1){
-                    break;
-                }
-                else if(rows == mazeHeight - 1){
-                    currentCell.destroyEastWall();
-                    continue;
-                }
-                else if(cols == mazeWidth - 1){
-                    if(currentCells.size() > 0){
-                        currentCells.get(rand.nextInt(currentCells.size())).destroyNorthWall();
-                        currentCells.clear();
-                        continue;
-                    }
-                    currentCell.destroyNorthWall();
-                    continue;
-                }
                 currentCells.add(currentCell);
-                if(rand.nextInt(2) == 0){
-                    currentCell.destroyEastWall();
-                }
-                else{
-                    currentCells.get(rand.nextInt(currentCells.size())).destroyNorthWall();
-                    currentCells.clear();
+                if(handleEdgeCases(rows, cols, currentCell, currentCells, rand) == 1){
+                    randomlyDestroyNorthOrEast(currentCell, currentCells, rand);
                 }
             }
         }
+    }
+
+    private void randomlyDestroyNorthOrEast(Cell currentCell, ArrayList<Cell> currentCells, Random rand){
+        if(rand.nextInt(2) == 0){
+            currentCell.destroyEastWall();
+        }
+        else{
+            destroyNorthWall(currentCells, currentCell, rand);
+        }
+    }
+
+    private int handleEdgeCases(int rows, int cols, Cell currentCell, ArrayList<Cell> currentCells, Random rand){
+        if(rows == mazeHeight - 1 && cols == mazeWidth - 1){
+            return -1;
+        }
+        else if(rows == mazeHeight - 1){
+            currentCell.destroyEastWall();
+            return 0;
+        }
+        else if(cols == mazeWidth - 1){
+            destroyNorthWall(currentCells, currentCell, rand);
+            return 0;
+        }
+        return 1;
+    }
+
+    private void destroyNorthWall(ArrayList<Cell> currentCells, Cell currentCell, Random rand){
+        currentCells.get(rand.nextInt(currentCells.size())).destroyNorthWall();
+        currentCells.clear();
     }
 
     public ArrayList<ArrayList<Cell>> getCells(){

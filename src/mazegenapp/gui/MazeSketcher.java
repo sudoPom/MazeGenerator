@@ -2,6 +2,7 @@ package mazegenapp.gui;
 
 import mazegenapp.datastructures.Cell;
 import mazegenapp.mazes.BinaryTreeMaze;
+import mazegenapp.mazes.GenericMaze;
 import mazegenapp.mazes.SideWinderMaze;
 
 import java.awt.Canvas;
@@ -19,7 +20,7 @@ public class MazeSketcher extends Canvas{
     JFrame frame;
     ArrayList<ArrayList<Cell>> cells;
 
-    public MazeSketcher(SideWinderMaze maze){
+    public MazeSketcher(GenericMaze maze){
         cells = maze.getCells();
         int mazeHeight = cells.size();
         int mazeWidth = cells.get(0).size();
@@ -59,12 +60,11 @@ public class MazeSketcher extends Canvas{
         if(cell.isEast()){
             g.drawLine(x+cellWidth,y,x+cellWidth,y-cellHeight);
         }
-
+        g.drawString(String.valueOf(cell.getDistance()),x+cellWidth/2,y-cellHeight/2);
     }
 
     public static void main(String[] args) {
-        SideWinderMaze maze = new SideWinderMaze(100,50);
-//        new mazegenapp.gui.MazeSketcher(maze);
+        GenericMaze maze = new BinaryTreeMaze(100,50);
         new MazeSketcher(maze);
     }
 }

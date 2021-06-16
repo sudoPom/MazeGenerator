@@ -6,8 +6,10 @@ import java.util.ArrayList;
 
 public class GenericMaze {
 
+    private static ArrayList<ArrayList<Cell>> cells;
+
     public GenericMaze(int width, int height) {
-        ArrayList<ArrayList<Cell>> cells = new ArrayList<>();
+        cells = new ArrayList<>();
         fillMaze(width, height, cells);
     }
 
@@ -40,5 +42,11 @@ public class GenericMaze {
                 cells.get(row).get(col).addNorthAndEastCells(north, east);
             }
         }
+    }
+
+
+
+    public ArrayList<ArrayList<Cell>> getCells(){
+        return cells;
     }
 }

@@ -6,6 +6,7 @@ public class Cell {
     private Cell eastCell;
     private Cell westCell;
     private Cell southCell;
+    private int distance = 0;
 
     public Cell(){
         north = true;
@@ -68,5 +69,9 @@ public class Cell {
 
     public boolean isWest() {
         return west;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 }
